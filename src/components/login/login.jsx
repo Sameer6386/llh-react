@@ -41,7 +41,7 @@ const Login = () => {
     setLoading(true); // Start loading
     try {
       const response = await axios.post(
-        `http://localhost:3000${endpoint}`,
+        `http://localhost:5000${endpoint}`,
         data
       );
       console.log(response.data); // Handle success (e.g., store token)
@@ -143,7 +143,6 @@ const Login = () => {
                   onChange={(e) => setRole(e.target.value)}
                   aria-label="Role"
                 >
-                  {/* <option value="Admin">Admin</option> */}
                   <option value="Organization">Organization</option>
                   <option value="Individual">Individual</option>
                 </select>

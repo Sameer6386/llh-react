@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false); // Sidebar state
-  const [showNavbar, setShowNavbar] = useState(true); // Track visibility of top navbar
-  const [lastScrollY, setLastScrollY] = useState(0); // Track last scroll position
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleNavbar = () => {
     setNavbarOpen(!navbarOpen);
   };
-
   // Handle scroll behavior to show/hide the top navbar
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
@@ -34,8 +33,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Navbar for large screens */}
-
       <div
         className={`header fixed z-[999] top-0 bg-white w-full shadow-xl
                     
@@ -44,7 +41,6 @@ const Navbar = () => {
                     }`}
       >
         <div className="nav h-32 w-full px-8 py-6">
-          {/* Links section for large screens */}
           <div className="hidden nav1 px-20 md:flex gap-4 justify-end">
             <Link className="text-md" to="/about">
               About Us

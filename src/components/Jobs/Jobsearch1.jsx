@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import debounce from "lodash.debounce"; // Install lodash to use debounce
 
 const JobSearch1 = () => {
   const [jobType, setJobType] = useState("");
@@ -15,6 +16,16 @@ const JobSearch1 = () => {
     e.preventDefault();
     navigate(`/search?jobtype=${jobType}&location=${location}`);
   };
+
+  // Debounced input handler
+  const handleJobTypeChange = debounce((value) => {
+    setJobType(value);
+    // You could trigger suggestions here for real-time search hints
+  }, 300); // Delay of 300ms
+
+  const handleLocationChange = debounce((value) => {
+    setLocation(value);
+  }, 300);
 
   // Fetch job search results from API
   useEffect(() => {
@@ -58,16 +69,14 @@ const JobSearch1 = () => {
             type="text"
             placeholder="Type of Job looking for?"
             className="border border-zinc-300 text-3xl px-20 py-6 md:px-4 w-full md:text-lg md:py-2 md:w-[20vw] rounded-md"
-            value={jobType}
-            onChange={(e) => setJobType(e.target.value)}
+            onChange={(e) => handleJobTypeChange(e.target.value)}
           />
 
           <input
             type="text"
             placeholder="Enter Location"
             className="border border-zinc-300 text-3xl px-20 py-6 md:px-4 w-full md:text-lg md:py-2 md:w-[20vw] rounded-md"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            onChange={(e) => handleLocationChange(e.target.value)}
           />
 
           <button
